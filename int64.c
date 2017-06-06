@@ -114,6 +114,8 @@ typedef struct stack_info {
 #define LUA_OPLE  2
 
 
+#if !defined(luaL_newlibtable)
+
 static lua_Integer lua_tointegerx (lua_State *L, int idx, int *isnum) {
   lua_Integer n = lua_tointeger(L, idx);
   if (isnum) *isnum = (n != 0 || lua_type(L, idx) == LUA_TNUMBER);
@@ -142,6 +144,8 @@ static void *luaL_testudata (lua_State *L, int ud, const char *tname) {
   }
   return NULL;  /* value is not a userdata with a metatable */
 }
+
+#endif
 
 #endif  /* } */
 
